@@ -1,0 +1,26 @@
+第一步：打开运行环境
+        在anaconda里打开tensorflow环境（python version:Python 3.6.9 :: Anaconda, Inc.）
+        所用到的库：pandas,numpy,sys,csv,os,sklearn,pywt,joblib,RandomForestClassifier
+第二步：数据均衡
+        手动将训练集中不足14个csv文件的前三类，通过复制粘贴，并和OR文件一样命名，变成每类14个csv文件
+第三步：数据预处理和特征提取（这一步分别需要对训练集C0319和测试集C0408都进行一次）
+（1）打开cwru_data_pre.ipynb
+（2）在第一个程序框内按照注释生成所需的isolation文件夹和normalization文件夹
+（3）然后更改路径参数，一共4个参数
+（4）运行整个代码
+（5）生成time_fre.csv，打开训练集的time_fre.csv，将其中的BA_time列（一共5列）删除掉（测试集本来就没有）
+第四步：生成模型
+（1）打开cwru_create_model.ipynb
+（2）在第一个程序框内按照注释更改路径参数，一共3个参数
+（3）运行整个代码
+第五步：使用模型
+（1）打开cwru_use_model.ipynb
+（2）在第一个程序框内按照注释更改路径参数，一共3个参数
+（3）运行整个代码
+（4）生成time_fre_RF.csv即结果文件。
+
+补充说明：
+（1）cwru_model_optimize.ipynb是RF模型参数优化代码，使用GridSearchCV。代码核心是while循环，直到每一个参数在一次循环中都不发生变化就会跳出循环并输出结果,但运行十分缓慢。
+（2）上交的model和result.csv文件并不是我们最好的得分（虽然才14分），因为当时的参数没有保存，后来一直想提高成绩，结果把模型参数弄没了，但model保存了下来，我们小组实际微信小程序用的是那个得分最高的model
+（3）第五步，除了生成predict以外，还有该predict在对应test_file中的比重，因为每一个test_file是加时间窗提取特征的，最终predict取的是所占比重最高的
+（4）最终结果文件并不叫result.csv，因为实际的过程中，会生成很多不同情况的结果文件，上交的取的是分类效果最好的。
